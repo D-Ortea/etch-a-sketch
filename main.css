@@ -1,0 +1,40 @@
+:root {
+  --rowNum: 16;
+  --colNum: 16;
+}
+
+#container {
+  display: grid;
+  grid: ". title ." 50px
+        ". button ." 30px
+        "sketch sketch sketch" 1fr 
+        / 1fr 2fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+#grid-btn {
+  grid-area: button;
+  text-align: center;
+}
+
+#title {
+  grid-area: title;
+}
+
+#sketchbook {
+  display: grid;
+  grid: repeat(var(--rowNum), 1fr) / repeat(var(--colNum), 1fr);
+  width: 512px;
+  height: 512px;
+  border: 2px solid red;
+  grid-area: sketch;
+}
+
+.cell {
+  background: white;
+}
+
+.cell-over {
+  background: black;
+}
