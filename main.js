@@ -3,6 +3,8 @@ const create = (str) => document.createElement(str);
 const style = document.documentElement.style;
 
 const sketchBook = select('#sketchbook');
+let color = 'black';
+let intensity = 100;
 
 function createGrid(side = 16) {
   style.setProperty('--rowNum', side);
@@ -25,8 +27,49 @@ function deleteCells() {
 
 function addCellListener(div) {
   div.addEventListener('pointerenter', () => {
-    div.classList.add('cell-over');
+    const bgColor = div.style.background;
+    if (bgColor) {
+      if (intensity < 100) {
+        darkenColor(div, bgColor);
+      } else if(color === 'black') {
+        div.style.background = createRGBColor();
+      }
+    } else {
+      div.style.background = createRGBColor();
+    }
   });
+}
+
+function createRGBColor(rgb = null) {
+  const randRGB = () => Math.floor(Math.random() * 255);
+
+  return (rgb)                                    ? `rgb(${rgb.toString()})`
+       : (color === 'black' && intensity === 100) ? 'rgb(0,0,0)'
+       : (color === 'black' && intensity < 100)   ? 'rgb(200,200,200)'
+       :                                            `rgb(${randRGB()}, ${randRGB()}, ${randRGB()})`;
+}
+
+function darkenColor(div, bgColor) {
+  const rgb = div.style.background.slice(4, -1).split(',');
+  div.style.background = createRGBColor(rgb.map(color => (+color === 0) ? color : color - 26));
+}
+
+function addBrushListener() {
+  const brushInputs = document.querySelectorAll('input[name="brush"]');
+  for (let i = 0; i < brushInputs.length; i++) {
+    brushInputs[i].addEventListener('click', () => {
+      color = brushInputs[i].value;
+    });
+  }
+}
+
+function addIntensityListener() {
+  const intensityInputs = document.querySelectorAll('input[name="intensity"]');
+  for (let i = 0; i < intensityInputs.length; i++) {
+    intensityInputs[i].addEventListener('click', () => {
+      intensity = +intensityInputs[i].value;
+    });
+  }
 }
 
 function addClearBtnListerner() {
@@ -39,17 +82,21 @@ function addClearBtnListerner() {
 function addResizeButtonListener() {
   const button = select('#resize-btn');
   button.addEventListener('click', () => {
-    createGrid(prompt('Type sketchbook side dimensions', 16));
+    let newSide = prompt('Type sketchbook side dimensions', 16);
+    newSide = (isNaN(newSide) || newSide === null) ? 16 : newSide;
+    createGrid(newSide);
   });
 }
 
 function clearSketchBook() {
   const cells = sketchBook.childNodes;
   for (let i = 0; i < cells.length; i++) {
-    cells[i].classList.remove('cell-over');
+    cells[i].style.background = "";
   }
 }
 
+addBrushListener();
+addIntensityListener();
 addResizeButtonListener();
 addClearBtnListerner();
 createGrid();
