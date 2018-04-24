@@ -1,25 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Bilbo');
+
 :root {
   --rowNum: 16;
   --colNum: 16;
 }
 
-#container {
-  display: grid;
-  grid: ". title ." 50px
-        ". button ." 30px
-        "sketch sketch sketch" 1fr 
-        / 1fr 2fr 1fr;
-  justify-items: center;
-  align-items: center;
+/* body {
+  background:
+radial-gradient(black 15%, transparent 16%) 0 0,
+radial-gradient(black 15%, transparent 16%) 8px 8px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+background-color:#282828;
+background-size:16px 16px;
+} */
+
+body {  
+  background-color: #fff; 
+  background-image: 
+    linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+    linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
+  font-family: 'Bilbo', cursive;
+  color: #5980d4;
 }
 
-#grid-btn {
-  grid-area: button;
+#test {
+  display: grid;
+}
+
+#container {
+  display: grid;
+  grid: "title sketch" 100px
+        "top-group sketch" 1fr 
+        "bottom-group sketch" 1fr
+        / 1fr 4fr;
+  justify-items: center;
+  align-items: center;
   text-align: center;
+  justify-self: right;
+  align-self: center;  
+  margin: 25px 5px;
 }
 
 #title {
-  grid-area: title;
+  grid-area: title;  
+  margin-right: 10px;
 }
 
 #sketchbook {
@@ -27,8 +53,57 @@
   grid: repeat(var(--rowNum), 1fr) / repeat(var(--colNum), 1fr);
   width: 512px;
   height: 512px;
-  border: 2px solid red;
+  border: 4px solid #d45980;
+  border-radius: 5px;
   grid-area: sketch;
+  justify-self: left;
+}
+
+.btn-group {
+  border: 3px outset #80d459;  
+  border-radius: 5px;  
+  margin: 3px;
+}
+
+.top-group {
+  grid-area: top-group;
+  grid-column: 1 / 1;
+  grid-row: 2 / 2;
+  align-self: end;  
+}
+
+.bottom-group {
+  grid-area: bottom-group;
+  grid-column: 1 / 1;
+  grid-row: 3 / 3;
+  align-self: start;
+  padding: 10px;
+}
+
+.btn-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 5px;
+}
+
+.grid-btn {
+  text-align: center;
+  border: 1.5px dashed #5980d4;;
+  border-radius: 5px;
+  background: transparent;
+  color: #5980d4;
+
+  margin: 10px 0;
+  padding: 5px 10px;
+
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Bilbo', cursive;
+  outline: none;
+}
+
+.grid-btn:hover {
+  background: #d46f59;
 }
 
 .cell {

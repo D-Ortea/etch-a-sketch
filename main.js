@@ -7,12 +7,19 @@ const sketchBook = select('#sketchbook');
 function createGrid(side = 16) {
   style.setProperty('--rowNum', side);
   style.setProperty('--colNum', side);
-  clearSketchBook();
+  deleteCells();
   for (let i = 0; i < side * side; i++) {
     const div = create('div');
     div.classList.add('cell');
     addCellListener(div);
     sketchBook.appendChild(div);
+  }
+}
+
+function deleteCells() {
+  const cells = sketchBook.childNodes;
+  while (cells.length > 0) {
+    sketchBook.removeChild(cells[0]);
   }
 }
 
@@ -23,20 +30,26 @@ function addCellListener(div) {
 }
 
 function addClearBtnListerner() {
-  const button = select('#grid-btn');
+  const button = select('#clear-btn');
   button.addEventListener('click', () => {
-    createGrid(prompt('Type sketchbook side dimensions'));
+    clearSketchBook();
+  });
+}
+
+function addResizeButtonListener() {
+  const button = select('#resize-btn');
+  button.addEventListener('click', () => {
+    createGrid(prompt('Type sketchbook side dimensions', 16));
   });
 }
 
 function clearSketchBook() {
-  document.querySelector('#sketchbook').childNodes
   const cells = sketchBook.childNodes;
-  while(cells.length > 0) {
-    sketchBook.removeChild(cells[0]);
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove('cell-over');
   }
 }
 
-
+addResizeButtonListener();
 addClearBtnListerner();
 createGrid();
