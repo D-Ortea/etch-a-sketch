@@ -5,16 +5,6 @@
   --colNum: 16;
 }
 
-/* body {
-  background:
-radial-gradient(black 15%, transparent 16%) 0 0,
-radial-gradient(black 15%, transparent 16%) 8px 8px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-background-color:#282828;
-background-size:16px 16px;
-} */
-
 body {  
   background-color: #fff; 
   background-image: 
@@ -23,10 +13,6 @@ body {
   background-size: 100% 1.2em;
   font-family: 'Bilbo', cursive;
   color: #5980d4;
-}
-
-#test {
-  display: grid;
 }
 
 #container {
@@ -38,7 +24,7 @@ body {
   justify-items: center;
   align-items: center;
   text-align: center;
-  justify-self: right;
+  justify-self: center;
   align-self: center;  
   margin: 25px 5px;
 }

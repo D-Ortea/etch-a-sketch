@@ -8,39 +8,41 @@
 </head>
 
 <body>
-  <div id="test">
-    <div id="container">
-      <h1 id="title">ETCH-A-SKETCH</h1>
-      <div class="btn-group top-group">
-        <ul class="btn-list">
-          <li>
-            <fieldset>
-              <legend>Brush color:</legend>
-              <input type="radio" name="brush" value="black" checked> Black<br>
-              <input type="radio" name="brush" value="random"> Random<br>
-            </fieldset>
-          </li>
-          <li>
-            <fieldset>
-                <legend>Brush intensity:</legend>
-                <input type="radio" name="intensity" value="10"> 10%<br>
-                <input type="radio" name="intensity" value="100" checked> 100%<br>
-              </fieldset>
-          </li>
-        </ul>
-      </div>
-      <div class="btn-group bottom-group">
-        <ul class="btn-list">
-          <li>
-            <button class="grid-btn" id="clear-btn">CLEAR</button>
-          </li>
-          <li>
-            <button class="grid-btn" id="resize-btn">RESIZE</button>
-          </li>
-        </ul>
-      </div>
-      <div id="sketchbook"></div>
+  <div id="container">
+    <h1 id="title">ETCH-A-SKETCH</h1>
+    <div class="btn-group top-group">
+      <ul class="btn-list">
+        <li>
+          <fieldset>
+            <legend>Brush color:</legend>
+            <input type="radio" name="brush" value="black" checked> Black
+            <br>
+            <input type="radio" name="brush" value="random"> Random
+            <br>
+          </fieldset>
+        </li>
+        <li>
+          <fieldset>
+            <legend>Brush intensity:</legend>
+            <input type="radio" name="intensity" value="10"> 10%
+            <br>
+            <input type="radio" name="intensity" value="100" checked> 100%
+            <br>
+          </fieldset>
+        </li>
+      </ul>
     </div>
+    <div class="btn-group bottom-group">
+      <ul class="btn-list">
+        <li>
+          <button class="grid-btn" id="clear-btn">CLEAR</button>
+        </li>
+        <li>
+          <button class="grid-btn" id="resize-btn">RESIZE</button>
+        </li>
+      </ul>
+    </div>
+    <div id="sketchbook"></div>
   </div>
   <script src="main.js"></script>
 </body>
